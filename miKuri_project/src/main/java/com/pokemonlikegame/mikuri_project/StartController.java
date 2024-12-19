@@ -54,10 +54,10 @@ public class StartController implements Initializable {
     public void automaticIncrease() throws InterruptedException {
         progressBar.setStyle("-fx-accent:  #ff77cc");
         Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(100),
+                Duration.millis(4),
                 event -> {
                     if (progress < 1.0){
-                        progress += 0.05;
+                        progress += 0.002;
                         progressBar.setProgress(progress);
                     } else {
                         try {

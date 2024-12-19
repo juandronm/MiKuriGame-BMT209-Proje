@@ -8,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -28,43 +31,68 @@ public class MikuriController implements Initializable {
     @FXML
     private Button noButton;
     @FXML
-    private Button continueButton;
-    @FXML
     private Button newGameButton;
-    @FXML
-    private Button optionsButton;
     @FXML
     private Button exitGameButton;
     @FXML
     private Button backMenuButton;
     @FXML
     private Button creditsButton;
+    @FXML
+    private Slider volumeSlider;
+    @FXML
+    private ImageView miKuriTitle;
+    @FXML
+    private ImageView soundIcon;
+    @FXML
+    private AnchorPane credits;
 
+    private MediaPlayer media;
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
-        String path = "src/main/resources/com/pokemonlikegame/mikuri_project/startMusic.mp3";
-        Media ses = new Media(new File(path).toURI().toString());
-        MediaPlayer media = new MediaPlayer(ses);
-        media.setAutoPlay(true);
+        credits.setVisible(false);
+        backMenuButton.setVisible(false);
+        try {
+            URL resource = getClass().getResource("/com/pokemonlikegame/mikuri_project/startMusic.mp3");
+            assert resource != null;
+            Media ses = new Media(resource.toString());
+            media = new MediaPlayer(ses);
+            media.setAutoPlay(true);
+        } catch (Exception e) {
+            System.err.println("Error initializing media: " + e.getMessage());
+        }
+
+        // Check if volumeSlider is defined
+        if (media != null) {
+            volumeSlider.setMin(0);
+            volumeSlider.setMax(1);
+            volumeSlider.setValue(media.getVolume());
+            volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                media.setVolume(newValue.doubleValue());
+            });
+        }
     }
 
     @FXML
-    protected void onContinueButtonClick() {
-        continueButton.setVisible(false);
-        newGameButton.setVisible(false);
-        optionsButton.setVisible(false);
-        exitGameButton.setVisible(false);
-        creditsButton.setVisible(false);
+    protected void onSlider() {
+        volumeSlider.setMin(0);
+        volumeSlider.setMax(1);
+        volumeSlider.setValue(media.getVolume());
 
+        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            media.setVolume(newValue.doubleValue());
+        });
     }
 
     @FXML
     protected void onNewGameButtonClick() {
-        continueButton.setVisible(false);
         newGameButton.setVisible(false);
-        optionsButton.setVisible(false);
         exitGameButton.setVisible(false);
         creditsButton.setVisible(false);
+        volumeSlider.setVisible(false);
+        miKuriTitle.setVisible(false);
+        soundIcon.setVisible(false);
+
 
         txt.setVisible(true);
         txt.setText("Your progress will gone.");
@@ -91,29 +119,24 @@ public class MikuriController implements Initializable {
             noButton.setVisible(false);
             txt.setVisible(false);
 
-            continueButton.setVisible(true);
+            soundIcon.setVisible(true);
             newGameButton.setVisible(true);
-            optionsButton.setVisible(true);
             exitGameButton.setVisible(true);
+            creditsButton.setVisible(true);
+            volumeSlider.setVisible(true);
+            miKuriTitle.setVisible(true);
+
         });
     }
 
     @FXML
-    protected void onOptionsButtonClick() {
-        continueButton.setDisable(true);
-        newGameButton.setDisable(true);
-        optionsButton.setDisable(true);
-        exitGameButton.setDisable(true);
-
-    }
-
-    @FXML
     protected void onExitGameButtonClick() {
-        continueButton.setDisable(true);
         newGameButton.setDisable(true);
-        optionsButton.setDisable(true);
         exitGameButton.setDisable(true);
         creditsButton.setDisable(true);
+        volumeSlider.setDisable(true);
+        soundIcon.setVisible(false);
+        miKuriTitle.setVisible(false);
 
         txt.setVisible(true);
         txt.setText("Are you sure?");
@@ -122,11 +145,15 @@ public class MikuriController implements Initializable {
         noButton.setVisible(true);
 
         yesButton.setOnAction(event -> {
-            continueButton.setVisible(false);
             newGameButton.setVisible(false);
-            optionsButton.setVisible(false);
             exitGameButton.setVisible(false);
             creditsButton.setVisible(false);
+            volumeSlider.setVisible(false);
+            soundIcon.setVisible(false);
+
+            yesButton.setDisable(true);
+            noButton.setDisable(true);
+
             txt.setText("Exiting...");
 
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
@@ -145,31 +172,34 @@ public class MikuriController implements Initializable {
             noButton.setVisible(false);
             txt.setVisible(false);
 
-            continueButton.setDisable(false);
             newGameButton.setDisable(false);
-            optionsButton.setDisable(false);
             exitGameButton.setDisable(false);
             creditsButton.setDisable(false);
+            volumeSlider.setDisable(false);
+            miKuriTitle.setVisible(true);
+            soundIcon.setVisible(true);
         });
     }
     @FXML
     public void menuBack() throws IOException {
-        Stage window = (Stage) backMenuButton.getScene().getWindow();
-        if(window != null){
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mikuri-StaLoaScreen.fxml")));
-            window.setScene(new Scene(root, 600, 450));
-            window.setTitle("Mikuri - Menu");
-        }
+        newGameButton.setVisible(true);
+        exitGameButton.setVisible(true);
+        creditsButton.setVisible(true);
+        volumeSlider.setVisible(true);
+        soundIcon.setVisible(true);
+        credits.setVisible(false);
+        backMenuButton.setVisible(false);
     }
 
     @FXML
-    public void setCredits() throws IOException {
-        Stage window = (Stage) creditsButton.getScene().getWindow();
-        if(window != null){
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("credits.fxml")));
-            window.setScene(new Scene(root, 600, 450));
-            window.setTitle("Mikuri - Menu");
-        }
+    public void setCredits(){
+        newGameButton.setVisible(false);
+        exitGameButton.setVisible(false);
+        creditsButton.setVisible(false);
+        volumeSlider.setVisible(false);
+        soundIcon.setVisible(false);
+        credits.setVisible(true);
+        backMenuButton.setVisible(true);
     }
     public void gameDegisme() throws IOException {
         if(yesButton.getScene() != null){

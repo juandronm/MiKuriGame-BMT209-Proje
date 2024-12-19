@@ -8,4 +8,6 @@ module com.pokemonlikegame.mikuri_project {
 
     opens com.pokemonlikegame.mikuri_project to javafx.fxml;
     exports com.pokemonlikegame.mikuri_project;
+    exports InGameScreen;
+    opens InGameScreen to javafx.fxml;
 }
