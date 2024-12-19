@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?package com.pokemonlikegame.mikuri_project.background?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" onKeyPressed="#pause" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pokemonlikegame.mikuri_project.InGameController">
+   <ImageView fitHeight="700.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@background/card_game_battlefield_blurred.jpg" />
+      </image>
+   </ImageView>
+   <Label fx:id="pauseMenu" alignment="CENTER" layoutX="234.0" layoutY="202.0" prefHeight="147.0" prefWidth="432.0" style="-fx-background-color: #ff77cc;" text="Game paused" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="24.0" />
+      </font>
+   </Label>
+   <Button fx:id="exitFromInGame" layoutX="612.0" layoutY="480.0" mnemonicParsing="false" onAction="#onExitGameButtonClick" prefHeight="86.0" prefWidth="228.0" style="-fx-background-color: #ff77cc;" text="Exit game" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="inGameToMenu" layoutX="51.0" layoutY="479.0" mnemonicParsing="false" onAction="#menuBack" prefHeight="86.0" prefWidth="228.0" style="-fx-background-color: #ff77cc;" text="Main menu" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="continueGame" layoutX="336.0" layoutY="480.0" mnemonicParsing="false" onAction="#continueGame" prefHeight="86.0" prefWidth="228.0" style="-fx-background-color: #ff77cc;" text="Continue game" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="evetButton" layoutX="63.0" layoutY="462.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="228.0" style="-fx-background-color: #ff77cc;" text="Yes" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="hayirButton" layoutX="601.0" layoutY="462.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="228.0" style="-fx-background-color: #ff77cc;" text="No" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="18.0" />
+      </font>
+   </Button>
+   <ImageView fx:id="environment" fitHeight="700.0" fitWidth="900.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@background/card_game_battlefield_resized.jpg" />
+      </image>
+   </ImageView>
+   <Label fx:id="contentWindow" alignment="CENTER" contentDisplay="CENTER" layoutX="305.0" layoutY="304.0" prefHeight="131.0" prefWidth="290.0" style="-fx-background-color: #009990;" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+      <font>
+         <Font name="Serif Bold" size="16.0" />
+      </font>
+   </Label>
+   <Button fx:id="attackButton" layoutX="397.0" layoutY="448.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #3A1078;" text="ATTACK!" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="15.0" />
+      </font>
+   </Button>
+</AnchorPane>
