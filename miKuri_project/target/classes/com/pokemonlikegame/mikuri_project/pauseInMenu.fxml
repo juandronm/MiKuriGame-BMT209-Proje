@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="368.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pokemonlikegame.mikuri_project.MenuToGameBarController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <ImageView fitHeight="368.0" fitWidth="696.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@blurred_background_resized.jpg" />
+      </image>
+   </ImageView>
+   <Button fx:id="exitFromInGame" layoutX="52.0" layoutY="268.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: #ff77cc;" text="Exit game" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="16.0" />
+      </font>
+   </Button>
+   <Button fx:id="backToGame" layoutX="257.0" layoutY="268.0" mnemonicParsing="false" style="-fx-background-color: #ff77cc;" text="Continue game" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="16.0" />
+      </font>
+   </Button>
+   <Button fx:id="toMenu" layoutX="456.0" layoutY="268.0" mnemonicParsing="false" style="-fx-background-color: #ff77cc;" text="Return to menu" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="16.0" />
+      </font>
+   </Button>
+   <Label fx:id="pause" alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="97.0" prefHeight="60.0" prefWidth="167.0" style="-fx-background-color: #009990;" text="Pause" textFill="WHITE">
+      <font>
+         <Font name="Serif Bold" size="24.0" />
+      </font>
+   </Label>
+</AnchorPane>
